@@ -1,0 +1,9 @@
+@import url("./Roboto/Roboto.css");
+@import url("./OpenSans/OpenSans.css");
+
+@font-face {
+    font-family: 'Minecraft';
+    font-style: normal;
+    font-weight: 400;
+    src: url('Minecraft.woff2') format('woff2');
+}
