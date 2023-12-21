@@ -18,6 +18,8 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
+    'react/button-has-type': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   parserOptions: {
     project: './tsconfig.json',

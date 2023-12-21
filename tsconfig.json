@@ -14,12 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
-  "include": ["src", ".eslintrc.js"],
-  "paths": {
-    "@components/*": ["./src/components/*"],
-    "@public/*": ["./public/*"],
-    "@images/*": ["./public/images/*"]
-  }
+  "include": ["src", ".eslintrc.js", "craco.config.js"],
 }
