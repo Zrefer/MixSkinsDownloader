@@ -7,7 +7,7 @@ const App: FC = function App() {
   return (
     <Routes>
       <Route path="/" element={<MainPage />}>
-        <Route path="user" element={<UserPage />} />
+        <Route path="user/:username" element={<UserPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

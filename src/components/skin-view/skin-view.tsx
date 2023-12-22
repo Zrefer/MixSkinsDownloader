@@ -47,30 +47,30 @@ type ControlsProps = {
 
 type SkinViewerProps = {
   skin: SkinProps;
-  view: ViewProps;
-  animation: AnimationProps;
-  controls: ControlsProps;
+  view?: ViewProps;
+  animation?: AnimationProps;
+  controls?: ControlsProps;
 };
 
-const viewProps: ViewProps = {
+const defView: ViewProps = {
   width: 300,
   height: 300,
-  SSRFactor: 1,
+  SSRFactor: 4,
   fov: 70,
-  zoom: 0.9,
-  light: 2,
+  zoom: 0.8,
+  light: 3,
   background: 'transparent',
   rotate: 0,
 };
 
-const animProps: AnimationProps = {
+const defAnim: AnimationProps = {
   type: 'walk',
   animSpeed: 0.2,
   rotate: false,
   rotateSpeed: 0.3,
 };
 
-const ctrlProps: ControlsProps = {
+const defCtrls: ControlsProps = {
   rotate: true,
   zoom: false,
   pan: false,
@@ -79,17 +79,22 @@ const ctrlProps: ControlsProps = {
 
 const SkinView: FC<SkinViewerProps> = function SkinView({
   skin,
-  view = {},
-  animation = {},
-  controls = {},
+  view,
+  animation,
+  controls,
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [skinImage, setSkinImage] = useState<HTMLImageElement | ImageBitmap>();
   const [capeImage, setCapeImage] = useState<HTMLImageElement | ImageBitmap>();
 
-  const SSRFactor = view.SSRFactor || viewProps.SSRFactor!;
-  const width = view.width || viewProps.width!;
-  const height = view.height || viewProps.height!;
+  const viewParams = { ...defView, ...view };
+  const animParams = { ...defAnim, ...animation };
+  const ctrlsParams = { ...defCtrls, ...controls };
+
+  const SSRFactor = viewParams.SSRFactor!;
+  const width = viewParams.width!;
+  const height = viewParams.height!;
+  const background = viewParams.background!;
 
   // Load skin image in useEffect
   useEffect(() => {
@@ -131,28 +136,27 @@ const SkinView: FC<SkinViewerProps> = function SkinView({
       nameTag: new NameTagObject(skin.nameTag, {
         textStyle: skin.nameTagColor,
       }),
-      panorama: view.panorama,
+      panorama: viewParams.panorama,
     });
 
     // ViewProps
     viewer.width = width * SSRFactor;
     viewer.height = height * SSRFactor;
 
-    viewer.fov = view.fov || viewProps.fov!;
-    viewer.zoom = view.zoom || viewProps.zoom!;
-    viewer.globalLight.intensity = view.light || viewProps.light!;
+    viewer.fov = viewParams.fov!;
+    viewer.zoom = viewParams.zoom!;
+    viewer.globalLight.intensity = viewParams.light!;
 
-    const rotationXDeg = (view.rotate || viewProps.rotate!) * (Math.PI / 180);
+    const rotationXDeg = viewParams.rotate! * (Math.PI / 180);
     viewer.playerWrapper.rotation.y = rotationXDeg;
     viewer.playerWrapper.position.y = -2;
 
-    const background = view.background || viewProps.background!;
     if (background === 'transparent')
       viewer.renderer.setClearColor(0xffffff, 0);
     else viewer.background = background;
 
     // AnimationProps - animation
-    switch (animation.type || animProps.type!) {
+    switch (animParams.type) {
       case 'walk':
         viewer.animation = new WalkingAnimation();
         break;
@@ -166,52 +170,47 @@ const SkinView: FC<SkinViewerProps> = function SkinView({
         viewer.animation = new IdleAnimation();
         break;
     }
-    if (viewer.animation) {
-      viewer.animation.speed = animation.animSpeed || animProps.animSpeed!;
-    }
+    if (viewer.animation) viewer.animation.speed = animParams.animSpeed!;
 
     // AnimationProps - rotate
-    viewer.autoRotate = animation.rotate || animProps.rotate!;
-    viewer.autoRotateSpeed = animation.rotateSpeed || animProps.rotateSpeed!;
+    viewer.autoRotate = animParams.rotate!;
+    viewer.autoRotateSpeed = animParams.rotateSpeed!;
 
     // ControlsProps
     viewer.controls.enabled = true;
-    viewer.controls.enableRotate = controls.rotate || ctrlProps.rotate!;
-    viewer.controls.enableZoom = controls.zoom || ctrlProps.zoom!;
-    viewer.controls.enablePan = controls.pan || ctrlProps.pan!;
-    viewer.controls.enableDamping = controls.damping || ctrlProps.damping!;
+    viewer.controls.enableRotate = ctrlsParams.rotate!;
+    viewer.controls.enableZoom = ctrlsParams.zoom!;
+    viewer.controls.enablePan = ctrlsParams.pan!;
+    viewer.controls.enableDamping = ctrlsParams.damping!;
 
     // Multiply controls speed to SSRFactor
     viewer.controls.rotateSpeed *= SSRFactor;
     viewer.controls.panSpeed *= SSRFactor;
     viewer.controls.keyPanSpeed *= SSRFactor;
 
-    return () => {
-      viewer.dispose();
-    };
+    return () => viewer.dispose();
   }, [
     skinImage,
     capeImage,
     width,
     height,
     SSRFactor,
-    animation.animSpeed,
-    animation.rotate,
-    animation.rotateSpeed,
-    animation.type,
-    controls.damping,
-    controls.pan,
-    controls.rotate,
-    controls.zoom,
+    background,
+    animParams.animSpeed,
+    animParams.rotate,
+    animParams.rotateSpeed,
+    animParams.type,
+    ctrlsParams.damping,
+    ctrlsParams.pan,
+    ctrlsParams.rotate,
+    ctrlsParams.zoom,
     skin.nameTag,
     skin.nameTagColor,
-    view.SSRFactor,
-    view.background,
-    view.fov,
-    view.light,
-    view.panorama,
-    view.rotate,
-    view.zoom,
+    viewParams.fov,
+    viewParams.light,
+    viewParams.panorama,
+    viewParams.rotate,
+    viewParams.zoom,
   ]);
 
   return (
@@ -225,6 +224,11 @@ const SkinView: FC<SkinViewerProps> = function SkinView({
       />
     </div>
   );
+};
+SkinView.defaultProps = {
+  view: defView,
+  animation: defAnim,
+  controls: defCtrls,
 };
 
 export default SkinView;

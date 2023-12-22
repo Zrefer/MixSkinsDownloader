@@ -7,7 +7,7 @@
 }
 
 .image {
-    background-image: url(../../../public/images/minecraft-person-icon.png);
+    background-image: url(../../images/minecraft-person-icon.png);
     background-repeat: no-repeat;
     background-size: contain;
     height: 128px;

@@ -1,0 +1,6 @@
+.container {
+    display: flex;
+    margin-top: 5vh;
+    max-height: 500px;
+    width: 100%;
+}

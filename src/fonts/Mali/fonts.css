@@ -1,0 +1,9 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Mali';
+    font-style: normal;
+    font-weight: 700;
+    src: url('Mali-Bold.woff2') format('woff2'),
+        url('Mali-Bold.woff') format('woff'),
+        url('Mali-Bold.ttf') format('truetype');
+}

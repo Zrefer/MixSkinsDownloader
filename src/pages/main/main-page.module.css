@@ -1,0 +1,25 @@
+.main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+.container {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    padding: 10vh 32px;
+    width: 100%;
+}
+
+.title {
+    font-family: 'Mali', 'OpenSans', "Segoe UI", sans-serif;
+    font-size: 32px;
+    margin: 0;
+    margin-bottom: 32px;
+    text-align: center;
+}
