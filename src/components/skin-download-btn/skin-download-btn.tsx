@@ -19,15 +19,15 @@ const SkinDownloadBtn: FC<ISkinDownloadProps> = function SkinDownloadBtn({
   data,
 }) {
   return (
-    <button type="button" className={styles.button} disabled={data === null}>
-      <a href={data?.url} download={data?.name}>
+    <a href={data?.imageData} download={data?.name}>
+      <button type="button" className={styles.button} disabled={data === null}>
         {data
           ? `Скачать ${type === 'skin' ? 'Скин' : 'Плащ'}`
           : `${type === 'skin' ? 'Скин' : 'Плащ'} отсутствует`}
         {data && `, ${data.width}x${data.height}, ${getSizeText(data.size)}`}
         <div className={styles.image} />
-      </a>
-    </button>
+      </button>
+    </a>
   );
 };
 export default SkinDownloadBtn;

@@ -1,11 +1,14 @@
 import { FC } from 'react';
 
 import SkinDownloadBtn from '../skin-download-btn/skin-download-btn';
-import { IUserData } from '../../types/skin';
+import { ISkinData } from '../../types/skin';
 
 import styles from './skin-data.module.css';
 
-const SkinData: FC<IUserData> = function SkinData({ skin, cape }) {
+const SkinData: FC<{
+  skin: ISkinData;
+  cape: ISkinData;
+}> = function SkinData({ skin, cape }) {
   return (
     <div className={styles.container}>
       <SkinDownloadBtn type="skin" data={skin} />

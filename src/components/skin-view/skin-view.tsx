@@ -1,4 +1,4 @@
-import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { FC, useLayoutEffect, useRef } from 'react';
 import {
   FlyingAnimation,
   IdleAnimation,
@@ -7,8 +7,6 @@ import {
   SkinViewer,
   WalkingAnimation,
 } from 'skinview3d';
-
-import loadImage from '../../utils/utils';
 
 type SkinAnimationType = 'none' | 'idle' | 'walk' | 'run' | 'fly';
 
@@ -84,8 +82,6 @@ const SkinView: FC<SkinViewerProps> = function SkinView({
   controls,
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [skinImage, setSkinImage] = useState<HTMLImageElement | ImageBitmap>();
-  const [capeImage, setCapeImage] = useState<HTMLImageElement | ImageBitmap>();
 
   const viewParams = { ...defView, ...view };
   const animParams = { ...defAnim, ...animation };
@@ -96,43 +92,15 @@ const SkinView: FC<SkinViewerProps> = function SkinView({
   const height = viewParams.height!;
   const background = viewParams.background!;
 
-  // Load skin image in useEffect
-  useEffect(() => {
-    if (typeof skin.skin === 'string') {
-      loadImage(skin.skin, { useCors: true })
-        .then((image) => setSkinImage(image))
-        .catch();
-    } else setSkinImage(skin.skin);
-
-    return () => {
-      setSkinImage(undefined);
-    };
-  }, [skin.skin]);
-
-  // Load cape image in useEffect
-  useEffect(() => {
-    if (skin.cape) {
-      if (typeof skin.cape === 'string') {
-        loadImage(skin.cape, { useCors: true })
-          .then((image) => setCapeImage(image))
-          .catch();
-      } else setCapeImage(skin.cape);
-    }
-
-    return () => {
-      setCapeImage(undefined);
-    };
-  }, [skin.cape]);
-
   // Init SkinViewer in useLayoutEffect
   useLayoutEffect(() => {
-    if (!canvasRef.current || !skinImage) return () => {};
+    if (!canvasRef.current || !skin.skin) return () => {};
 
     // Constructor with SkinProps and no-param values
     const viewer = new SkinViewer({
       canvas: canvasRef.current,
-      skin: skinImage,
-      cape: capeImage,
+      skin: skin.skin,
+      cape: skin.cape,
       nameTag: new NameTagObject(skin.nameTag, {
         textStyle: skin.nameTagColor,
       }),
@@ -190,8 +158,8 @@ const SkinView: FC<SkinViewerProps> = function SkinView({
 
     return () => viewer.dispose();
   }, [
-    skinImage,
-    capeImage,
+    skin.skin,
+    skin.cape,
     width,
     height,
     SSRFactor,

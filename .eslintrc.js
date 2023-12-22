@@ -17,6 +17,7 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'import/no-extraneous-dependencies': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/button-has-type': 'off',
     'react/jsx-props-no-spreading': 'off',

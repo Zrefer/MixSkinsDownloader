@@ -2,8 +2,9 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { SkinData, SkinView } from '../../components';
-import GraysonSkin from '../../images/Grayson.png';
-import GraysonCloak from '../../images/Grayson_cloak.png';
+import { ISkinData } from '../../types/skin';
+import { getCape, getSkin } from '../../utils/api';
+import SteveSkin from '../../images/steve-skin.png';
 
 import styles from './user-page.module.css';
 
@@ -15,8 +16,14 @@ function getViewHeight(): number {
 const UserPage: FC = function UserPage() {
   const { username } = useParams();
 
-  const [height, setHeight] = useState(getViewHeight());
+  const [skinData, setSkinData] = useState<ISkinData>(null);
+  const [capeData, setCapeData] = useState<ISkinData>(null);
+  useEffect(() => {
+    getSkin(username!).then(setSkinData);
+    getCape(username!).then(setCapeData);
+  }, [username]);
 
+  const [height, setHeight] = useState(getViewHeight());
   useEffect(() => {
     const updateHeight = () => setHeight(getViewHeight());
 
@@ -29,8 +36,8 @@ const UserPage: FC = function UserPage() {
       <div>
         <SkinView
           skin={{
-            skin: GraysonSkin,
-            cape: GraysonCloak,
+            skin: skinData?.imageData || SteveSkin,
+            cape: capeData?.imageData,
             nameTag: username,
           }}
           view={{
@@ -42,16 +49,7 @@ const UserPage: FC = function UserPage() {
           }}
         />
       </div>
-      <SkinData
-        skin={{
-          width: 64,
-          height: 32,
-          size: 14276,
-          url: GraysonSkin,
-          name: `${username}_skin`,
-        }}
-        cape={null}
-      />
+      <SkinData skin={skinData} cape={capeData} />
     </div>
   );
 };

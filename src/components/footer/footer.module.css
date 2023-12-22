@@ -1,0 +1,14 @@
+.footer {
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    padding: 8px 16px;
+    position: fixed;
+    width: 100%;
+}
+
+.footer p {
+    margin: 0;
+}
