@@ -1,0 +1,10 @@
+/build/
+/infra/
+/node_modules/
+
+.git
+.gitignore
+
+Dockerfile
+
+db.sqlite3

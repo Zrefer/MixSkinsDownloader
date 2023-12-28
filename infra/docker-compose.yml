@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ../
+    volumes:
+      - build_value:/app/build/
+    networks:
+      - mix-skins-downloader
+
+  nginx:
+    image: nginx:1.24.0-alpine
+    depends_on:
+      - frontend
+    env_file:
+      - ../.env
+    restart: unless-stopped
+    volumes:
+      - build_value:/usr/share/nginx/html/
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - mix-skins-downloader
+
+volumes:
+  build_value:
+
+networks:
+  mix-skins-downloader:
