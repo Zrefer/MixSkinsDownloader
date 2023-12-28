@@ -21,6 +21,11 @@ const UserPage: FC = function UserPage() {
   useEffect(() => {
     getSkin(username!).then(setSkinData);
     getCape(username!).then(setCapeData);
+
+    return () => {
+      setSkinData(null);
+      setCapeData(null);
+    };
   }, [username]);
 
   const [height, setHeight] = useState(getViewHeight());
@@ -43,6 +48,7 @@ const UserPage: FC = function UserPage() {
           view={{
             height,
             rotate: 30,
+            SSRFactor: 4,
           }}
           controls={{
             zoom: true,

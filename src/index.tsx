@@ -17,3 +17,6 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>,
 );
+
+// TODO: Nicks Scroll
+// TODO: mobile ver landscape

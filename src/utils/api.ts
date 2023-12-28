@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 import { ISkinData } from '../types/skin';
+import UsersRespose from '../types/api';
 
-const baseUrl = 'http://127.0.0.1:8000';
+const baseUrl = process.env.REACT_APP_API_URL;
 
 function getImageSize(
   imageData: string,
@@ -50,4 +51,10 @@ export function getSkin(username: string): Promise<ISkinData> {
 
 export function getCape(username: string): Promise<ISkinData> {
   return getFile('cape', username);
+}
+
+export async function getUsers(search: string): Promise<UsersRespose> {
+  const url = `${baseUrl}/users?search=${search}`;
+  const response = await axios.get<UsersRespose>(url);
+  return response.data;
 }

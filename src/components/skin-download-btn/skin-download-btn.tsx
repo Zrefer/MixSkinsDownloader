@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { ISkinData } from '../../types/skin';
+import useWidth from '../../hooks/useWidth';
 
 import styles from './skin-download-btn.module.css';
 
@@ -18,14 +19,24 @@ const SkinDownloadBtn: FC<ISkinDownloadProps> = function SkinDownloadBtn({
   type,
   data,
 }) {
+  const width = useWidth();
+
+  const getButtonText = () => {
+    if (!data) {
+      return `${type === 'skin' ? 'Скин' : 'Плащ'} отсутствует`;
+    }
+
+    let text = `Скачать ${type === 'skin' ? 'Скин' : 'Плащ'}`;
+    text += `, ${data.width}x${data.height}`;
+    if (width >= 768) text += `, ${getSizeText(data.size)}`;
+    return text;
+  };
+
   return (
     <a href={data?.imageData} download={data?.name}>
       <button type="button" className={styles.button} disabled={data === null}>
-        {data
-          ? `Скачать ${type === 'skin' ? 'Скин' : 'Плащ'}`
-          : `${type === 'skin' ? 'Скин' : 'Плащ'} отсутствует`}
-        {data && `, ${data.width}x${data.height}, ${getSizeText(data.size)}`}
-        <div className={styles.image} />
+        {getButtonText()}
+        {width >= 768 && <div className={styles.image} />}
       </button>
     </a>
   );
