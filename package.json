@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "GENERATE_SOURCEMAP=false && craco build",
+    "build": "craco build",
     "eject": "react-scripts eject",
     "format": "prettier --write .",
     "lint": "eslint ."
