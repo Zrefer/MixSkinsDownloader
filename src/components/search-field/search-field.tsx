@@ -94,13 +94,15 @@ const SearchField: FC = function SearchField() {
     const target = event.target as HTMLElement;
     if (target.classList.contains(styles.field)) {
       const li = document.querySelector(
-        `.${styles.dropDownItem}:${
+        `.${CSS.escape(styles.dropDownItem)}:${
           event.code === 'ArrowDown' ? 'first-child' : 'last-child'
         }`,
       ) as HTMLElement;
       if (!li) return;
 
-      const btn = li.querySelector(`.${styles.dropDownItemBtn}`) as HTMLElement;
+      const btn = li.querySelector(
+        `.${CSS.escape(styles.dropDownItemBtn)}`,
+      ) as HTMLElement;
       if (btn) btn.focus();
     } else if (target.classList.contains(styles.dropDownItemBtn)) {
       const index = filteredUsers.indexOf((target as HTMLInputElement).value);
@@ -108,17 +110,21 @@ const SearchField: FC = function SearchField() {
 
       const newIndex = index + (event.code === 'ArrowDown' ? 1 : -1);
       if (newIndex >= filteredUsers.length || newIndex < 0) {
-        const field = document.querySelector(`.${styles.field}`) as HTMLElement;
+        const field = document.querySelector(
+          `.${CSS.escape(styles.field)}`,
+        ) as HTMLElement;
         if (field) field.focus();
         return;
       }
 
       const li = document.querySelector(
-        `.${styles.dropDownItem}:nth-child(${newIndex + 1})`,
+        `.${CSS.escape(styles.dropDownItem)}:nth-child(${newIndex + 1})`,
       ) as HTMLElement;
       if (!li) return;
 
-      const btn = li.querySelector(`.${styles.dropDownItemBtn}`) as HTMLElement;
+      const btn = li.querySelector(
+        `.${CSS.escape(styles.dropDownItemBtn)}`,
+      ) as HTMLElement;
       if (btn) btn.focus();
     }
   };
