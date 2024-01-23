@@ -18,5 +18,11 @@ root.render(
   </React.StrictMode>,
 );
 
+// v.1.1.0
 // TODO: Nicks Scroll
 // TODO: mobile ver landscape
+// TODO: Loading download btn
+// TODO: fix black skinview (mobile)
+
+// v.1.2.0
+// TODO: skin changer
