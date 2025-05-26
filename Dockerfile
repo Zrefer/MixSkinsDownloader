@@ -12,7 +12,7 @@ COPY src src
 COPY public public
 COPY tsconfig.json tsconfig.json
 COPY tsconfig.node.json tsconfig.node.json
-COPY .eslintrc.js .eslintrc.js
+COPY .eslintrc.cjs .eslintrc.cjs
 COPY vite.config.ts vite.config.ts
 COPY .env .env
 
