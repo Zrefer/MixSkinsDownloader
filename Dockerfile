@@ -11,8 +11,9 @@ COPY package.json yarn.lock ./
 COPY src src
 COPY public public
 COPY tsconfig.json tsconfig.json
+COPY tsconfig.node.json tsconfig.node.json
 COPY .eslintrc.js .eslintrc.js
-COPY craco.config.js craco.config.js
+COPY vite.config.ts vite.config.ts
 COPY .env .env
 
 RUN yarn install --immutable && yarn build
