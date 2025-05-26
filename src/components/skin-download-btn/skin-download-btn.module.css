@@ -1,20 +1,20 @@
 .button {
-    height: 40px;
-    position: relative;
-    width: 100%;
+  height: 40px;
+  position: relative;
+  width: 100%;
 }
 
 .button:active:not(:disabled) {
-    opacity: .9;
+  opacity: 0.9;
 }
 
 .image {
-    background: url(../../images/download-icon.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 28px;
-    position: absolute;
-    right: 12px;
-    top: 6px;
-    width: 28px;
+  background: url(../../images/download-icon.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 28px;
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  width: 28px;
 }

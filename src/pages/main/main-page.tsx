@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router';
-
 import { Footer, SearchField } from '../../components';
-
 import styles from './main-page.module.css';
 
 const MainPage: FC = function MainPage() {

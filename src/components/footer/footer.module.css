@@ -1,22 +1,22 @@
 .footer {
-    bottom: 0;
-    box-sizing: border-box;
-    display: flex;
-    font-size: 14px;
-    justify-content: space-between;
-    padding: 8px 16px;
-    position: fixed;
-    width: 100%;
+  bottom: 0;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  padding: 8px 16px;
+  position: fixed;
+  width: 100%;
 }
 
 .footer p {
-    margin: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 767px) and (max-height: 899px) {
-    .footer {
-        font-size: 11px;
-        padding: 8px;
-        position: static;
-    }
+  .footer {
+    font-size: 11px;
+    padding: 8px;
+    position: static;
+  }
 }

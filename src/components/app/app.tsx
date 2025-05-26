@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { Routes, Route } from 'react-router';
-
+import { Route, Routes } from 'react-router';
 import { MainPage, NotFoundPage, UserPage } from '../../pages';
 
 const App: FC = function App() {

@@ -1,32 +1,32 @@
 .container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
 }
 
 .image {
-    background-image: url(../../images/minecraft-person-icon.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 128px;
-    width: 128px;
+  background-image: url(../../images/minecraft-person-icon.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 128px;
+  width: 128px;
 }
 
 .title {
-    font-size: 48px;
-    font-weight: 600;
-    margin: 32px 0;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 32px 0;
 }
 
 .text {
-    font-size: 27px;
-    text-align: center;
+  font-size: 27px;
+  text-align: center;
 }
 
 .button {
-    font-size: 22px;
-    height: 64px;
-    width: 192px;
+  font-size: 22px;
+  height: 64px;
+  width: 192px;
 }

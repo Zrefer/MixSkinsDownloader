@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-
 import styles from './not-found-page.module.css';
 
 const NotFound404Page: FC = function NotFound404Page() {

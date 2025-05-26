@@ -1,8 +1,6 @@
 import { FC } from 'react';
-
-import SkinDownloadBtn from '../skin-download-btn/skin-download-btn';
 import { ISkinData } from '../../types/skin';
-
+import SkinDownloadBtn from '../skin-download-btn/skin-download-btn';
 import styles from './skin-data.module.css';
 
 const SkinData: FC<{

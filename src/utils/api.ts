@@ -1,12 +1,11 @@
 import axios from 'axios';
-
-import { ISkinData } from '../types/skin';
 import UsersRespose from '../types/api';
+import { ISkinData } from '../types/skin';
 
-const baseUrl = process.env.REACT_APP_API_URL;
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 function getImageSize(
-  imageData: string,
+  imageData: string
 ): Promise<{ width: number; height: number }> {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -23,11 +22,9 @@ function getImageSize(
 
 async function getFile(
   type: 'cape' | 'skin',
-  username: string,
+  username: string
 ): Promise<ISkinData> {
-  const url = `${baseUrl}/${
-    type === 'skin' ? 'skins' : 'cloaks'
-  }/${username}.png`;
+  const url = `${baseUrl}/${type === 'skin' ? 'skins' : 'cloaks'}/${username}.png`;
   try {
     const response = await axios.get<Blob>(url, { responseType: 'blob' });
     const blob = response.data;

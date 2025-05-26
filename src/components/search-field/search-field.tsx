@@ -9,10 +9,8 @@ import {
   useState,
 } from 'react';
 import { useNavigate, useParams } from 'react-router';
-
 import UsersRespose from '../../types/api';
 import { getUsers } from '../../utils/api';
-
 import styles from './search-field.module.css';
 
 const SearchField: FC = function SearchField() {
@@ -35,7 +33,7 @@ const SearchField: FC = function SearchField() {
 
     const users = usersResponse.results;
     const result = users.filter((user) =>
-      user.toLowerCase().startsWith(value.toLowerCase()),
+      user.toLowerCase().startsWith(value.toLowerCase())
     );
     users.forEach((user) => {
       if (result.includes(user)) return;
@@ -96,12 +94,12 @@ const SearchField: FC = function SearchField() {
       const li = document.querySelector(
         `.${CSS.escape(styles.dropDownItem)}:${
           event.code === 'ArrowDown' ? 'first-child' : 'last-child'
-        }`,
+        }`
       ) as HTMLElement;
       if (!li) return;
 
       const btn = li.querySelector(
-        `.${CSS.escape(styles.dropDownItemBtn)}`,
+        `.${CSS.escape(styles.dropDownItemBtn)}`
       ) as HTMLElement;
       if (btn) btn.focus();
     } else if (target.classList.contains(styles.dropDownItemBtn)) {
@@ -111,19 +109,19 @@ const SearchField: FC = function SearchField() {
       const newIndex = index + (event.code === 'ArrowDown' ? 1 : -1);
       if (newIndex >= filteredUsers.length || newIndex < 0) {
         const field = document.querySelector(
-          `.${CSS.escape(styles.field)}`,
+          `.${CSS.escape(styles.field)}`
         ) as HTMLElement;
         if (field) field.focus();
         return;
       }
 
       const li = document.querySelector(
-        `.${CSS.escape(styles.dropDownItem)}:nth-child(${newIndex + 1})`,
+        `.${CSS.escape(styles.dropDownItem)}:nth-child(${newIndex + 1})`
       ) as HTMLElement;
       if (!li) return;
 
       const btn = li.querySelector(
-        `.${CSS.escape(styles.dropDownItemBtn)}`,
+        `.${CSS.escape(styles.dropDownItemBtn)}`
       ) as HTMLElement;
       if (btn) btn.focus();
     }

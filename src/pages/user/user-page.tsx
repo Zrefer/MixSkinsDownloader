@@ -1,11 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-
 import { SkinData, SkinView } from '../../components';
+import SteveSkin from '../../images/steve-skin.png';
 import { ISkinData } from '../../types/skin';
 import { getCape, getSkin } from '../../utils/api';
-import SteveSkin from '../../images/steve-skin.png';
-
 import styles from './user-page.module.css';
 
 function getViewHeight(): number {
