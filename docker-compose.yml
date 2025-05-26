@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   frontend:
-    build: ../
+    build: ./
     env_file:
-      - ../.env
+      - ./.env
     networks:
       - network
     volumes:
-      - ../logs/:/var/log/nginx/
+      - ./logs/:/var/log/nginx/
 
 networks:
   network:
