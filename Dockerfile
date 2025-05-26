@@ -1,10 +1,28 @@
-FROM node:21-alpine3.17
+FROM node:20.11.1-alpine3.19 as builder
 
-RUN mkdir /app
-WORKDIR /app
+RUN mkdir "/tmp/dist"
+WORKDIR /tmp
 
+# for yarn berry
+COPY .yarn/releases/ .yarn/releases
+COPY .yarnrc.yml ./.yarnrc.yml
+COPY yarn.lock yarn.lock
 COPY package.json yarn.lock ./
-RUN yarn install
+COPY src src
+COPY public public
+COPY tsconfig.json tsconfig.json
+COPY .eslintrc.js .eslintrc.js
+COPY craco.config.js craco.config.js
+COPY .env .env
 
-COPY . .
-RUN yarn build
+RUN yarn install --immutable && yarn build
+
+FROM nginx:1.24.0-alpine
+
+EXPOSE 80
+
+COPY --from=builder /tmp/dist /usr/share/nginx/html/dist
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/conf.d/site.conf /etc/nginx/conf.d/default.conf
+
+CMD ["nginx", "-g", "daemon off;"]

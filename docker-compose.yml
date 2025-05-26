@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ../
+    env_file:
+      - ../.env
+    networks:
+      - network
+    volumes:
+      - ../logs/:/var/log/nginx/
+
+networks:
+  network:
+    name: mixskins_frontend
