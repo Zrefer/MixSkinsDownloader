@@ -10,6 +10,7 @@ COPY yarn.lock yarn.lock
 COPY package.json yarn.lock ./
 COPY src src
 COPY public public
+COPY index.html index.html
 COPY tsconfig.json tsconfig.json
 COPY tsconfig.node.json tsconfig.node.json
 COPY .eslintrc.cjs .eslintrc.cjs
