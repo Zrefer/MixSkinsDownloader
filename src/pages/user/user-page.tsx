@@ -4,7 +4,7 @@ import { SkinData, SkinView } from '../../components';
 import SteveSkin from '../../images/steve-skin.png';
 import { ISkinData } from '../../types/skin';
 import { getCape, getSkin } from '../../utils/api';
-import styles from './user-page.module.css';
+import styles from './user-page.module.scss';
 
 function getViewHeight(): number {
   const height = window.innerHeight;

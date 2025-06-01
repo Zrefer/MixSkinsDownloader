@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import useWidth from '../../hooks/useWidth';
 import { ISkinData } from '../../types/skin';
-import styles from './skin-download-btn.module.css';
+import styles from './skin-download-btn.module.scss';
 
 interface ISkinDownloadProps {
   type: 'cape' | 'skin';

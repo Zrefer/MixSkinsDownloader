@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router';
 import { Footer, SearchField } from '../../components';
-import styles from './main-page.module.css';
+import styles from './main-page.module.scss';
 
 const MainPage: FC = function MainPage() {
   return (

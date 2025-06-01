@@ -1,0 +1,79 @@
+$bg-gradient: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+$primary-color: rgba(108, 159, 247, 0.3);
+$text-color: rgba(255, 255, 255, 0.9);
+$link-color: #c2d5ff;
+$border-radius: 8px;
+
+body {
+  background: $bg-gradient;
+  color: $text-color;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(108, 159, 247, 0.6);
+  outline-offset: 2px;
+}
+
+button {
+  background: rgba(108, 159, 247, 0.2);
+  border: 1px solid $primary-color;
+  border-radius: $border-radius;
+  color: $link-color;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+
+  &:not(:disabled):hover {
+    background: $primary-color;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius;
+  color: white;
+  font-family: inherit;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+
+  &:focus {
+    border-color: rgba(108, 159, 247, 0.6);
+    box-shadow: 0 0 0 3px rgba(108, 159, 247, 0.2);
+    outline: none;
+  }
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: white;
+  }
+}
+
+// Адаптив
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+}

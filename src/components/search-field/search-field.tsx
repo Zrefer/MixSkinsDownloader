@@ -11,7 +11,7 @@ import {
 import { useNavigate, useParams } from 'react-router';
 import UsersRespose from '../../types/api';
 import { getUsers } from '../../utils/api';
-import styles from './search-field.module.css';
+import styles from './search-field.module.scss';
 
 const SearchField: FC = function SearchField() {
   const navigate = useNavigate();

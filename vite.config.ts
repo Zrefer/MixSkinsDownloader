@@ -26,6 +26,11 @@ export default defineConfig({
       localsConvention: 'camelCase',
       generateScopedName: '[path][name]__[local]--[hash:base64:5]',
     },
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+      },
+    },
   },
   build: {
     target: 'esnext',

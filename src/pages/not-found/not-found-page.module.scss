@@ -1,0 +1,171 @@
+$primary-color: rgba(108, 159, 247, 0.1);
+$bg-gradient: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+$text-color: white;
+$link-color: #c2d5ff;
+
+.container {
+  background: $bg-gradient;
+  color: $text-color;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  &.animate {
+    .topPanel {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .leftPanel > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .image {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.topPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: $primary-color;
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(108, 159, 247, 0.2);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  padding-top: 5rem;
+}
+
+.leftPanel {
+  max-width: 500px;
+
+  > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.errorCode {
+  font-size: 6rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 1.5rem;
+  transition-delay: 0.1s;
+}
+
+.subtitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #fff, $link-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition-delay: 0.2s;
+}
+
+.description {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  transition-delay: 0.3s;
+}
+
+.backLink {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  background: rgba(108, 159, 247, 0.2);
+  color: $link-color;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 0.5s ease;
+  border: 1px solid rgba(108, 159, 247, 0.4);
+  backdrop-filter: blur(5px);
+  transition-delay: 0.4s;
+
+  &:hover {
+    background: rgba(108, 159, 247, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    color: $text-color;
+  }
+}
+
+.image {
+  width: 51%;
+  left: 10%;
+  position: relative;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5%;
+    padding-top: 6rem;
+    text-align: center;
+  }
+
+  .leftPanel {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    order: 2;
+  }
+
+  .errorCode {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .backLink {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+
+  .image {
+    width: 80%;
+    margin-bottom: 2rem;
+    left: 0;
+    order: 1;
+  }
+
+  .topPanel {
+    font-size: 1.1rem;
+    padding: 0.8rem;
+  }
+}
