@@ -26,7 +26,7 @@ const NotFound404Page: FC = function NotFound404Page() {
         </div>
 
         <img
-          src="/src/images/not-found.png"
+          src="/not-found.png"
           alt="not-found"
           className={styles.image}
         />
