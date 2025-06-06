@@ -8,6 +8,9 @@ COPY .yarn/releases/ .yarn/releases
 COPY .yarnrc.yml ./.yarnrc.yml
 COPY yarn.lock yarn.lock
 COPY package.json yarn.lock ./
+
+RUN yarn install --immutable
+
 COPY src src
 COPY public public
 COPY index.html index.html
@@ -17,7 +20,7 @@ COPY .eslintrc.cjs .eslintrc.cjs
 COPY vite.config.ts vite.config.ts
 COPY .env .env
 
-RUN yarn install --immutable && yarn build
+RUN yarn build
 
 FROM nginx:1.24.0-alpine
 
